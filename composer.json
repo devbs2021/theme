@@ -10,7 +10,16 @@
     }
   ],
   "require": {
-    "php": ">=7.4"
+    "php": ">=7.4",
+    "barryvdh/laravel-snappy": "^0.4.8",
+    "cviebrock/eloquent-sluggable": "^8.0",
+    "dompdf/dompdf": "^1.0",
+    "yajra/laravel-datatables-buttons": "^4.0",
+    "yajra/laravel-datatables-html": "^4.0",
+    "yajra/laravel-datatables-oracle": "~9.0"
+  },
+  "require-dev": {
+    "laravel/breeze": "^1.2"
   },
   "autoload": {
     "psr-4": {
