@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\Facades;
+namespace DevbShrestha\Theme\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

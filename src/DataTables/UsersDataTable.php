@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\DataTables;
+namespace DevbShrestha\Theme\DataTables;
 
 use App\Models\User;
 use Yajra\DataTables\Html\Button;
@@ -32,8 +32,8 @@ class UsersDataTable extends DataTable
             })
             ->editColumn('permissions', function (User $user) {
                 $data = '
-                <div class="text-center"><a data-toggle="collapse" href="#collapseExample'.$user->id.'" role="button" aria-expanded="false" aria-controls="collapseExample'.$user->id.'" class="btn btn-success" style="font-size:smaller;">
-                View Permissions</a></div><div class="collapse" id="collapseExample'.$user->id.'"> <div style="display:flex; flex-wrap:wrap; text-align:center;">';
+                <div class="text-center"><a data-toggle="collapse" href="#collapseExample' . $user->id . '" role="button" aria-expanded="false" aria-controls="collapseExample' . $user->id . '" class="btn btn-success" style="font-size:smaller;">
+                View Permissions</a></div><div class="collapse" id="collapseExample' . $user->id . '"> <div style="display:flex; flex-wrap:wrap; text-align:center;">';
                 $permissions = $user->permissions ? $user->permissions->permissions : "[]";
                 foreach (json_decode($permissions) as $key => $permission) {
                     if ($key % 2 == 1) {
@@ -89,7 +89,7 @@ class UsersDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function _getColumns()
     {
         return [
             Column::make('id')
@@ -113,7 +113,7 @@ class UsersDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function _filename()
     {
         return 'Users_' . date('YmdHis');
     }

@@ -1,23 +1,21 @@
 <?php
 
-namespace Devbs\Theme\Models;
+namespace DevbShrestha\Theme\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\User;
-
-
 
 class UserPermission extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [
+    protected $_fillable = [
         'user_id',
         'permissions',
-        'deleted_at'
+        'deleted_at',
     ];
 
     // protected $casts = [
@@ -25,7 +23,8 @@ class UserPermission extends Model
     //     'permissions'=>'array'
     // ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

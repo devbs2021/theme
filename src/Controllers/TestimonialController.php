@@ -1,14 +1,14 @@
 <?php
 
-namespace Devbs\Theme\Controllers;
+namespace DevbShrestha\Theme\Controllers;
 
 use App\Http\Controllers\Controller;
-use Devbs\Theme\Models\Testimonial;
-use Devbs\Theme\Requests\StoreTestimonialRequest;
-use Devbs\Theme\Requests\UpdateTestimonialRequest;
+use DevbShrestha\Theme\DataTables\TestimonialDataTable;
+use DevbShrestha\Theme\Models\Testimonial;
+use DevbShrestha\Theme\Requests\StoreTestimonialRequest;
+use DevbShrestha\Theme\Requests\UpdateTestimonialRequest;
+use DevbShrestha\Theme\Traits\FileUpload;
 use Illuminate\Http\Request;
-use Devbs\Theme\Traits\FileUpload;
-use Devbs\Theme\DataTables\TestimonialDataTable;
 
 class TestimonialController extends Controller
 {
@@ -53,7 +53,7 @@ class TestimonialController extends Controller
             if ($request->image) {
                 $data['image'] = $this->uploadFile('testimonial', $request->image);
             }
-            (!$request->position)?$data['position']=1:$data['position']=$request->position;
+            (!$request->position) ? $data['position'] = 1 : $data['position'] = $request->position;
             Testimonial::create($data);
 
             return redirect()->route('testimonials.index')->with('success', 'Successfully Created!!');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\Requests;
+namespace DevbShrestha\Theme\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,7 +26,7 @@ class UpdateUserRequest extends FormRequest
         return [
 
             'name' => 'required|string|max:255',
-            'email' => 'nullable|email|unique:users,email,'.$this->user->id,
+            'email' => 'nullable|email|unique:users,email,' . $this->user->id,
             'password' => 'nullable|min:6|max:20|string',
         ];
     }

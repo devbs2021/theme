@@ -1,12 +1,12 @@
 <?php
 
-namespace Devbs\Theme\Facades;
+namespace DevbShrestha\Theme\Facades;
 
-use Devbs\Theme\Jobs\SendMailJob;
-use Devbs\Theme\Models\Setting;
+use DevbShrestha\Theme\Jobs\SendMailJob;
+use DevbShrestha\Theme\Models\Setting;
+use DevbShrestha\Theme\Models\Subscription;
+use DevbShrestha\Theme\Requests\StoreSubscriptionRequest;
 use File;
-use Devbs\Theme\Requests\StoreSubscriptionRequest;
-use Devbs\Theme\Models\Subscription;
 
 class Theme
 {
@@ -25,8 +25,9 @@ class Theme
         return Setting::all();
     }
 
-    public function getSubscriptionList(){
-        return Subscription::where('status',1)->get();
+    public function getSubscriptionList()
+    {
+        return Subscription::where('status', 1)->get();
     }
     public function packages()
     {
@@ -144,12 +145,13 @@ class Theme
 
     }
 
-    public function createSubscription(StoreSubscriptionRequest $request){
+    public function createSubscription(StoreSubscriptionRequest $request)
+    {
         Subscription::create([
-            'email'=>$request->email,
-            'status'=>(!$request->status)?0:1
+            'email' => $request->email,
+            'status' => (!$request->status) ? 0 : 1,
         ]);
-        return response()->json(['success'=>'Successfully Created']);
+        return response()->json(['success' => 'Successfully Created']);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\Requests;
+namespace DevbShrestha\Theme\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +25,7 @@ class StoreSubscriptionRequest extends FormRequest
     {
         return [
             'email' => 'required|email|unique:subscriptions,email',
-            'status'=>'nullable|in:1'
+            'status' => 'nullable|in:1',
         ];
     }
 }

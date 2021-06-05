@@ -1,8 +1,8 @@
 <?php
 
-namespace Devbs\Theme\Jobs;
+namespace DevbShrestha\Theme\Jobs;
 
-use Devbs\Theme\Mail\SendMail;
+use DevbShrestha\Theme\Mail\SendMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -19,8 +19,8 @@ class SendMailJob implements ShouldQueue
      *
      * @return void
      */
-    public $to, $subject, $view,$data;
-    public function __construct($to, $subject, $view,$data)
+    public $to, $subject, $view, $data;
+    public function __construct($to, $subject, $view, $data)
     {
         $this->to = $to;
         $this->subject = $subject;
@@ -36,7 +36,7 @@ class SendMailJob implements ShouldQueue
     public function handle()
     {
 
-        Mail::to($this->to)->send(new SendMail($this->subject, $this->view,$this->data));
+        Mail::to($this->to)->send(new SendMail($this->subject, $this->view, $this->data));
 
     }
 }

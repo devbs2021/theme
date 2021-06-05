@@ -1,9 +1,9 @@
 <?php
 
-namespace Devbs\Theme\Controllers;
+namespace DevbShrestha\Theme\Controllers;
 
 use App\Http\Controllers\Controller;
-use Devbs\Theme\Models\Setting;
+use DevbShrestha\Theme\Models\Setting;
 use Illuminate\Http\Request;
 use Theme;
 
@@ -49,15 +49,15 @@ class SettingController extends Controller
                 ]);
 
             } else {
-                if($moduleName=='Theme'){
-                    return redirect()->back()->with('error','You cannot disable theme package');
+                if ($moduleName == 'Theme') {
+                    return redirect()->back()->with('error', 'You cannot disable theme package');
                 }
                 $check->update([
                     'status' => 0,
                 ]);
             }
         }
-        return redirect()->back()->with('success','Successfully Updated!!');
+        return redirect()->back()->with('success', 'Successfully Updated!!');
     }
 
     /**

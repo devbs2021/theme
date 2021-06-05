@@ -1,12 +1,12 @@
 <?php
 
-namespace Devbs\Theme\Controllers;
+namespace DevbShrestha\Theme\Controllers;
 
 use App\Http\Controllers\Controller;
-use Devbs\Theme\DataTables\SubscriptionDataTable;
-use Devbs\Theme\Models\Subscription;
-use Devbs\Theme\Requests\StoreSubscriptionRequest;
-use Devbs\Theme\Requests\UpdateSubscriptionRequest;
+use DevbShrestha\Theme\DataTables\SubscriptionDataTable;
+use DevbShrestha\Theme\Models\Subscription;
+use DevbShrestha\Theme\Requests\StoreSubscriptionRequest;
+use DevbShrestha\Theme\Requests\UpdateSubscriptionRequest;
 use Illuminate\Http\Request;
 use Theme;
 
@@ -139,11 +139,11 @@ class SubscriptionController extends Controller
 
     public function sendMail(Request $request)
     {
-      
+
         $this->validate($request, [
             'message' => 'required|string',
             'subject' => 'required|string',
-            'subscriptions'=>'required',
+            'subscriptions' => 'required',
             'subscriptions.*' => 'email',
         ]);
         foreach ($request->subscriptions as $to) {
@@ -152,7 +152,7 @@ class SubscriptionController extends Controller
 
         }
 
-        return redirect()->route('subscriptions.index')->with('success','Mail send process is in queue');
+        return redirect()->route('subscriptions.index')->with('success', 'Mail send process is in queue');
 
     }
 }

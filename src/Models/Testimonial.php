@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\Models;
+namespace DevbShrestha\Theme\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,13 +11,12 @@ class Testimonial extends Model
     use HasFactory;
     use SoftDeletes;
 
-
-    protected $fillable = [
+    protected $_fillable = [
         'name',
         'image',
         'message',
         'introduction',
         'status',
-        'position'
+        'position',
     ];
 }

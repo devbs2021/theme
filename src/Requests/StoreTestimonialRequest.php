@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\Requests;
+namespace DevbShrestha\Theme\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,7 +30,7 @@ class StoreTestimonialRequest extends FormRequest
             'message' => 'required|string|max:2000',
             'introduction' => 'nullable|string|max:500',
             'status' => 'nullable|in:1',
-            'position'=>'nullable|integer'
+            'position' => 'nullable|integer',
         ];
     }
 }

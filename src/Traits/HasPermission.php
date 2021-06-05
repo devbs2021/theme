@@ -1,8 +1,8 @@
 <?php
 
-namespace Devbs\Theme\Traits;
+namespace DevbShrestha\Theme\Traits;
 
-use Devbs\Theme\Models\UserPermission;
+use DevbShrestha\Theme\Models\UserPermission;
 
 trait HasPermission
 {

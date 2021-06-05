@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\Middleware;
+namespace DevbShrestha\Theme\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
@@ -15,9 +15,9 @@ class CheckStatus
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next,$moduleName)
+    public function handle(Request $request, Closure $next, $moduleName)
     {
-        if(!Theme::checkModuleStatus($moduleName)){
+        if (!Theme::checkModuleStatus($moduleName)) {
             abort(404);
         }
         return $next($request);

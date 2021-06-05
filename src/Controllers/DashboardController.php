@@ -1,5 +1,5 @@
 <?php
-namespace Devbs\Theme\Controllers;
+namespace DevbShrestha\Theme\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -19,8 +19,9 @@ class DashboardController extends Controller
         return view('theme::index');
     }
 
-    public function menu(){
-        
+    public function menu()
+    {
+
     }
 
 }

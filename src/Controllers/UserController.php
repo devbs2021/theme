@@ -1,14 +1,14 @@
 <?php
 
-namespace Devbs\Theme\Controllers;
+namespace DevbShrestha\Theme\Controllers;
 
-use Devbs\Theme\Requests\StoreUserRequest;
-use Devbs\Theme\Requests\UpdateUserRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Hash;
 use App\Models\User;
-use Devbs\Theme\DataTables\UsersDataTable;
+use DevbShrestha\Theme\DataTables\UsersDataTable;
+use DevbShrestha\Theme\Requests\StoreUserRequest;
+use DevbShrestha\Theme\Requests\UpdateUserRequest;
+use Hash;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index(UsersDataTable $dataTable)
     {
-        abort_if(!in_array('user_view',json_decode(auth()->user()->permissions->permissions)),403);
+        abort_if(!in_array('user_view', json_decode(auth()->user()->permissions->permissions)), 403);
         return $dataTable->render('theme::user.index');
     }
 
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        abort_if(!in_array('user_create',json_decode(auth()->user()->permissions->permissions)),403);
+        abort_if(!in_array('user_create', json_decode(auth()->user()->permissions->permissions)), 403);
         return view('theme::user.create');
     }
 
@@ -111,7 +111,7 @@ class UserController extends Controller
             if ($request->permissions) {
                 $user->permissions()->withTrashed()->update([
                     'permissions' => json_encode($request->permissions),
-                    'deleted_at'=>null
+                    'deleted_at' => null,
                 ]);
             }
 

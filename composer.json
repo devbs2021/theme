@@ -1,31 +1,31 @@
 {
-    "name": "devbs/theme",
-    "type": "library",
-    "description": "Simple Package for admin lte theme",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Bharat Shrestha",
-            "email": "bharatstha07@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=7.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "Debbs\\Theme\\": "src/"
-        }
-    },
-    "minimum-stability": "stable",
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Debbs\\Theme\\ThemeServiceProvider"
-            ],
-            "aliases": {
-                "Theme": "Debbs\\Theme\\Facades\\ThemeFacade"
-            }
-        }
+  "name": "devbshrestha/theme",
+  "type": "library",
+  "description": "Simple Package for admin lte theme",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bharat Shrestha",
+      "email": "bharatstha07@gmail.com"
     }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "DevbShrestha\\Theme\\": "src/"
+    }
+  },
+  "minimum-stability": "stable",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "DevbShrestha\\Theme\\ThemeServiceProvider"
+      ],
+      "aliases": {
+        "Theme": "DevbShrestha\\Theme\\Facades\\ThemeFacade"
+      }
+    }
+  }
 }

@@ -1,9 +1,8 @@
 <?php
 
-namespace Devbs\Theme\Mail;
+namespace DevbShrestha\Theme\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -16,8 +15,8 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public $subject, $view,$data;
-    public function __construct($subject, $view,$data)
+    public $subject, $view, $data;
+    public function __construct($subject, $view, $data)
     {
         $this->subject = $subject;
         $this->view = $view;

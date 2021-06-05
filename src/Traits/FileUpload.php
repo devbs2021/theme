@@ -1,5 +1,5 @@
 <?php
-namespace Devbs\Theme\Traits;
+namespace DevbShrestha\Theme\Traits;
 
 trait FileUpload
 {

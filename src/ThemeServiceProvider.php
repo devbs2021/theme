@@ -1,11 +1,10 @@
 <?php
 
-namespace Devbs\Theme;
+namespace DevbShrestha\Theme;
 
-use Devbs\Theme\Facades\Theme;
-use Devbs\Theme\Middleware\CheckStatus;
+use DevbShrestha\Theme\Facades\Theme;
+use DevbShrestha\Theme\Middleware\CheckStatus;
 use Illuminate\Routing\Router;
-
 use Illuminate\Support\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider

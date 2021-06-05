@@ -1,12 +1,10 @@
 <?php
 
-namespace Devbs\Theme\DataTables;
+namespace DevbShrestha\Theme\DataTables;
 
-use Devbs\Theme\Models\Testimonial;
+use DevbShrestha\Theme\Models\Testimonial;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class TestimonialDataTable extends DataTable
@@ -27,10 +25,10 @@ class TestimonialDataTable extends DataTable
             ->editColumn('image', function (Testimonial $testimonial) {
                 return '<img src=' . asset('storage/' . $testimonial->image) . ' height="100px">';
             })
-             ->editColumn('status', function (Testimonial $testimonial) {
+            ->editColumn('status', function (Testimonial $testimonial) {
                 return $testimonial->status ? '<span style="color:white;background-color:green; padding:5px; border-radius:10px;">Published</span>' : '<span style="color:white;background-color:red; padding:5px; border-radius:10px;">Unpublished</span>';
             })
-             ->escapeColumns([]);
+            ->escapeColumns([]);
     }
 
     /**
@@ -52,18 +50,18 @@ class TestimonialDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('testimonial-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('testimonial-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1)
+            ->buttons(
+                Button::make('create'),
+                Button::make('export'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            );
     }
 
     /**
@@ -71,7 +69,7 @@ class TestimonialDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function _getColumns()
     {
         return [
             Column::make('id'),
@@ -82,10 +80,10 @@ class TestimonialDataTable extends DataTable
             Column::make('position'),
             Column::make('status'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -94,7 +92,7 @@ class TestimonialDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function _filename()
     {
         return 'Testimonial_' . date('YmdHis');
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Devbs\Theme\Requests;
+namespace DevbShrestha\Theme\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,9 @@ class UpdateSubscriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            
-            'email' => 'required|email|unique:subscriptions,email,'.$this->subscription->id,
-            'status'=>'nullable|in:1'
+
+            'email' => 'required|email|unique:subscriptions,email,' . $this->subscription->id,
+            'status' => 'nullable|in:1',
         ];
     }
 }
