@@ -2,24 +2,24 @@
 
 namespace DevbShrestha\Theme\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Menu extends Model
 {
     use HasFactory;
-    use Sluggable;
+    use HasSlug;
+
     use SoftDeletes;
 
-    public function sluggable(): array
+    public function getSlugOptions(): SlugOptions
     {
-        return [
-            'slug' => [
-                'source' => 'title',
-            ],
-        ];
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 
     public const TYPES = [
