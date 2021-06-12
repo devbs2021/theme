@@ -9,7 +9,7 @@ class Setting extends Model
 {
     use HasFactory;
 
-    protected $_fillable = [
+    protected $fillable = [
         'module',
         'status',
     ];

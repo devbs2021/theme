@@ -20,7 +20,7 @@ class TestimonialController extends Controller
      */
     public function index(TestimonialDataTable $dataTable)
     {
-        abort_if(!in_array('testimonial', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('testimonial_view'), 403);
 
         return $dataTable->render('theme::testimonial.index');
     }
@@ -32,7 +32,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        abort_if(!in_array('testimonial', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('testimonial_create'), 403);
 
         return view('theme::testimonial.create');
     }
@@ -45,7 +45,7 @@ class TestimonialController extends Controller
      */
     public function store(StoreTestimonialRequest $request)
     {
-        abort_if(!in_array('testimonial', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('testimonial_create'), 403);
 
         try {
 
@@ -84,7 +84,7 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial)
     {
-        abort_if(!in_array('testimonial', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('testimonial_edit'), 403);
 
         return view('theme::testimonial.edit', compact('testimonial'));
     }
@@ -98,7 +98,7 @@ class TestimonialController extends Controller
      */
     public function update(UPdateTestimonialRequest $request, Testimonial $testimonial)
     {
-        abort_if(!in_array('testimonial', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('testimonial_update'), 403);
 
         try {
 
@@ -125,7 +125,7 @@ class TestimonialController extends Controller
      */
     public function destroy(Testimonial $testimonial)
     {
-        abort_if(!in_array('testimonial', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('testimonial_delete'), 403);
 
         try {
 

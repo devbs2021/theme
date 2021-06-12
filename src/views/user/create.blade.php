@@ -76,16 +76,19 @@
                                 <h3 class="card-title">Permissions</h3>
                             </div>
                             <div class="card-body">
+
+                            </div>
+                            <div class="card-body">
                                 <div class="form-group">
                                     <a href="javascript:void(0);" class="btn btn-primary select-all"
                                         style="font-size: x-small;">Select All</a>
                                     <a href="javascript:void(0);" class="btn btn-danger deselect-all"
                                         style="font-size: x-small;">Deselect All</a>
-                                    <select class="form-control select2" name="permissions[]" multiple="multiple">
-                                        @foreach(Theme::getPermission() as $permission)
-                                        <option value="{{ $permission }}" @if(old('permissions'))
-                                            {{ (in_array($permission,old('permissions')))?'selected':'' }} @endif>
-                                            {{ $permission }}</option>
+                                    <select class="form-control select2" name="roles[]" multiple="multiple">
+                                        @foreach(Theme::getRoles() as $role)
+                                        <option value="{{ $role->name }}"
+                                            {{ (in_array($role->name,old('roles')??[]))?'selected':'' }}>{{ $role->name }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>

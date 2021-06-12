@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
      */
     public function index(SubscriptionDataTable $dataTable)
     {
-        abort_if(!in_array('subscription', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('subscription_view'), 403);
 
         return $dataTable->render('theme::subscription.index');
     }
@@ -31,7 +31,7 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        abort_if(!in_array('subscription', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('subscription_create'), 403);
 
         return view('theme::subscription.create');
     }
@@ -44,7 +44,7 @@ class SubscriptionController extends Controller
      */
     public function store(StoreSubscriptionRequest $request)
     {
-        abort_if(!in_array('subscription', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('subscription_create'), 403);
 
         try {
 
@@ -79,7 +79,7 @@ class SubscriptionController extends Controller
      */
     public function edit(Subscription $subscription)
     {
-        abort_if(!in_array('subscription', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('subscription_edit'), 403);
 
         return view('theme::subscription.edit', compact('subscription'));
     }
@@ -93,7 +93,7 @@ class SubscriptionController extends Controller
      */
     public function update(UpdateSubscriptionRequest $request, Subscription $subscription)
     {
-        abort_if(!in_array('subscription', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('subscription_update'), 403);
 
         try {
 
@@ -117,7 +117,7 @@ class SubscriptionController extends Controller
      */
     public function destroy(Subscription $subscription)
     {
-        abort_if(!in_array('subscription', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('subscription_delete'), 403);
 
         try {
 

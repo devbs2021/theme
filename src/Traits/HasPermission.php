@@ -7,7 +7,7 @@ use DevbShrestha\Theme\Models\UserPermission;
 trait HasPermission
 {
 
-    public function permissions()
+    public function permission()
     {
         return $this->hasOne(UserPermission::class);
     }

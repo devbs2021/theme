@@ -19,7 +19,8 @@ class UserController extends Controller
      */
     public function index(UsersDataTable $dataTable)
     {
-        abort_if(!in_array('user_view', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('user_view'), 403);
+
         return $dataTable->render('theme::user.index');
     }
 
@@ -30,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        abort_if(!in_array('user_create', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('user_create'), 403);
+
         return view('theme::user.create');
     }
 
@@ -42,7 +44,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        abort_if(!in_array('user_create', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('user_create'), 403);
 
         try {
 
@@ -51,11 +53,7 @@ class UserController extends Controller
                 $data['password'] = Hash::make($request->password);
             }
             $user = User::create($data);
-            if ($request->permissions) {
-                $user->permissions()->create([
-                    'permissions' => json_encode($request->permissions),
-                ]);
-            }
+            $user->assignRole($request->roles);
 
             return redirect()->route('users.index')->with('success', 'Successfully Created!!');
 
@@ -85,7 +83,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        abort_if(!in_array('user_edit', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('user_edit'), 403);
 
         return view('theme::user.edit', compact('user'));
     }
@@ -99,7 +97,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        abort_if(!in_array('user_update', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('user_update'), 403);
 
         try {
 
@@ -108,13 +106,7 @@ class UserController extends Controller
                 $data['password'] = Hash::make($request->password);
             }
             $user->update($data);
-            if ($request->permissions) {
-                $user->permissions()->withTrashed()->update([
-                    'permissions' => json_encode($request->permissions),
-                    'deleted_at' => null,
-                ]);
-            }
-
+            $user->syncRoles($request->roles);
             return redirect()->route('users.index')->with('success', 'Successfully Updated!!');
         } catch (\Exception $ex) {
 
@@ -132,7 +124,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        abort_if(!in_array('user_delete', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('user_delete'), 403);
 
         try {
 

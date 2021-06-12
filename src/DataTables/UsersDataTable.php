@@ -27,6 +27,14 @@ class UsersDataTable extends DataTable
             //         });
             //     }
             // })
+            ->editColumn('roles', function (User $user) {
+                $roles = '<div style="display:flex; flex-wrap:wrap; text-align:center;">';
+                foreach ($user->roles as $role) {
+                    $roles .= '<span style="background-color:green;flex: 1 0 21%;color:white;padding:5px; border-radius:10px;margin:10px; font-size:smaller;">' . $role->name . '</span><br>';
+                }
+                $roles .= '</div>';
+                return $roles;
+            })
             ->editColumn('action', function (User $user) {
                 return '<a class="" href=' . route('users.edit', $user->id) . '><i class="fa fa-edit"></i></a><form style="display:inline; margin-left:10px" method="POST" action="' . route('users.destroy', $user->id) . '"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="' . csrf_token() . '"><a class="delete-class" data-href=' . route('users.destroy', $user->id) . '><i class="fa fa-trash" style="color:red;"></i></a></form>';
             })
@@ -34,7 +42,7 @@ class UsersDataTable extends DataTable
                 $data = '
                 <div class="text-center"><a data-toggle="collapse" href="#collapseExample' . $user->id . '" role="button" aria-expanded="false" aria-controls="collapseExample' . $user->id . '" class="btn btn-success" style="font-size:smaller;">
                 View Permissions</a></div><div class="collapse" id="collapseExample' . $user->id . '"> <div style="display:flex; flex-wrap:wrap; text-align:center;">';
-                $permissions = $user->permissions ? $user->permissions->permissions : "[]";
+                $permissions = $user->permission ? $user->permission->permissions : "[]";
                 foreach (json_decode($permissions) as $key => $permission) {
                     if ($key % 2 == 1) {
 
@@ -59,7 +67,7 @@ class UsersDataTable extends DataTable
      */
     public function query()
     {
-        return User::with('permissions')->newQuery();
+        return User::with('roles')->newQuery();
     }
 
     /**
@@ -89,17 +97,21 @@ class UsersDataTable extends DataTable
      *
      * @return array
      */
-    protected function _getColumns()
+    protected function getColumns()
     {
         return [
             Column::make('id')
                 ->searchable(false),
             Column::make('name'),
             Column::make('email'),
-            Column::make('permissions')
-                ->width(500)
-                ->data('permissions')
-                ->name('permissions.permissions'),
+            Column::make('roles')
+                ->data('roles')
+                ->name('roles.name')
+                ->orderable(false),
+            // Column::make('permissions')
+            //     ->width(500)
+            //     ->data('permissions')
+            //     ->name('permissions.permissions'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -113,7 +125,7 @@ class UsersDataTable extends DataTable
      *
      * @return string
      */
-    protected function _filename()
+    protected function filename()
     {
         return 'Users_' . date('YmdHis');
     }

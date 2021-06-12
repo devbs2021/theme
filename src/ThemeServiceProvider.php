@@ -19,6 +19,9 @@ class ThemeServiceProvider extends ServiceProvider
             __DIR__ . '/public' => public_path('theme'),
         ], 'public');
         $router = $this->app->make(Router::class);
+        $this->publishes([
+            __DIR__ . '/config/theme.php' => config_path('theme.php'),
+        ], 'theme');
         $router->aliasMiddleware('checkstatus', CheckStatus::class);
 
     }

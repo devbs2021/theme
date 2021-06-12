@@ -69,7 +69,7 @@ class TestimonialDataTable extends DataTable
      *
      * @return array
      */
-    protected function _getColumns()
+    protected function getColumns()
     {
         return [
             Column::make('id'),
@@ -92,7 +92,7 @@ class TestimonialDataTable extends DataTable
      *
      * @return string
      */
-    protected function _filename()
+    protected function filename()
     {
         return 'Testimonial_' . date('YmdHis');
     }

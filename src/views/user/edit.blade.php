@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Enter Password" >
+                                placeholder="Enter Password">
                         </div>
 
                     </div>
@@ -83,11 +83,11 @@
                                         style="font-size: x-small;">Select All</a>
                                     <a href="javascript:void(0);" class="btn btn-danger deselect-all"
                                         style="font-size: x-small;">Deselect All</a>
-                                    <select class="form-control select2" name="permissions[]" multiple="multiple">
-                                        @foreach(Theme::getPermission() as $permission)
-                                        <option value="{{ $permission }}" @if($user->permissions)
-                                            {{ (in_array($permission,json_decode($user->permissions->permissions)))?'selected':'' }} @endif>
-                                            {{ $permission }}</option>
+                                    <select class="form-control select2" name="roles[]" multiple="multiple">
+                                        @foreach(Theme::getRoles() as $role)
+                                        <option value="{{ $role->name }}"
+                                            {{ (in_array($role->name,$user->roles->pluck('name')->toArray()))?'selected':'' }}>{{ $role->name }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -12,7 +12,7 @@ class UserPermission extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $_fillable = [
+    protected $fillable = [
         'user_id',
         'permissions',
         'deleted_at',

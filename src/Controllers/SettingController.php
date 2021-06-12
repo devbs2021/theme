@@ -16,7 +16,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        abort_if(!in_array('setting', json_decode(auth()->user()->permissions->permissions)), 403);
+        abort_if(!auth()->user()->can('site_setting'), 403);
 
         return view('theme::setting.index');
     }
@@ -39,6 +39,8 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
+        abort_if(!auth()->user()->can('site_setting'), 403);
+
         foreach (Theme::setting() as $setting) {
             $moduleName = $setting->module;
             $check = Setting::where('module', $moduleName)->first();

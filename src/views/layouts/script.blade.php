@@ -14,7 +14,7 @@
 <script src="{{ asset('theme') }}/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
 <script src="{{ asset('theme') }}/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="{{ asset('theme') }}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{ asset('theme') }}/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('theme') }}/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
