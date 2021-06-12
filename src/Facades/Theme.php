@@ -261,7 +261,7 @@ class Theme
     public function getPermissionListByPackage($package)
     {
         $contents = [];
-        $namesapce = "Corporate\\" . $package . "\Facades\\" . $package;
+        $namesapce = "DevbShrestha\\" . $package . "\Facades\\" . $package;
         $facadeName = $namesapce;
         if (method_exists($facadeName, 'getPermissions')) {
             $content = app($facadeName)->getPermissions();

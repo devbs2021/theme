@@ -33,10 +33,11 @@ Some of specific features are listed below
 ### Authentication
 It will provide HasPermission Traits, you must have to include in the User Model
 ```php
-use DevbShrestha\Theme\Traits\HasPermission;
+use 
+// Add spatie permission
 
 class User extends Model{
-    use HasPermission;
+    
 }
 
 ```
