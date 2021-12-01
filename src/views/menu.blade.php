@@ -3,12 +3,14 @@
         <i class="nav-icon fas fa-tachometer-alt"></i>
         <p>
             Dashboard
-            <i class="fas fa-angle-left right"></i>
+            {{-- <i class="fas fa-angle-left right"></i> --}}
             {{-- <span class="badge badge-info right">6</span> --}}
         </p>
     </a>
 </li>
-@if (auth()->user()->can('page_menu')) 
+{!! Theme::menu() !!}
+
+@if (auth()->user()->can('page_menu'))
 <li class="nav-item cms-menu">
     <a href="#" class="nav-link ">
         <i class="nav-icon fas fa-bolt"></i>
@@ -37,7 +39,8 @@
 </li>
 @endif
 
-{!! Theme::menu() !!}
+
+
 @if (auth()->user()->can('testimonial_menu'))
 <li class="nav-item testimonial-menu">
     <a href="#" class="nav-link ">
@@ -61,6 +64,34 @@
                 class="nav-link {{ \Route::currentRouteName()=='testimonials.index'?'active':'' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>List Testimonials</p>
+            </a>
+        </li>
+    </ul>
+</li>
+@endif
+@if (auth()->user()->can('faq_menu'))
+<li class="nav-item faq-menu">
+    <a href="#" class="nav-link ">
+        <i class="nav-icon fas fa-question"></i>
+        <p>
+            Faq
+            <i class="fas fa-angle-left right"></i>
+            {{-- <span class="badge badge-info right">6</span> --}}
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('faqs.create') }}"
+                class="nav-link {{ \Route::currentRouteName()=='faqs.create'?'active':'' }}">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>Create Faq</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('faqs.index') }}"
+                class="nav-link {{ \Route::currentRouteName()=='faqs.index'?'active':'' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>List Faq</p>
             </a>
         </li>
     </ul>
@@ -129,6 +160,28 @@
     </ul>
 </li>
 @endif
+
+@if (auth()->user()->can('message_menu'))
+<li class="nav-item message-menu">
+    <a href="#" class="nav-link ">
+        <i class="nav-icon fas fa-envelope"></i>
+        <p>
+            Messsage
+            <i class="fas fa-angle-left right"></i>
+            {{-- <span class="badge badge-info right">6</span> --}}
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('messages.index') }}"
+                class="nav-link {{ \Route::currentRouteName()=='messages.index'?'active':'' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>List Messages</p>
+            </a>
+        </li>
+    </ul>
+</li>
+@endif
 @if (auth()->user()->can('user_menu'))
 <li class="nav-item user-menu">
     <a href="#" class="nav-link ">
@@ -179,20 +232,33 @@
         <i class="nav-icon fas fa-cog"></i>
         <p>
             Company Profile
-            <i class="fas fa-angle-left right"></i>
+            {{-- <i class="fas fa-angle-left right"></i> --}}
             {{-- <span class="badge badge-info right">6</span> --}}
         </p>
     </a>
 </li>
 @endif
-@if (auth()->user()->can('site_setting'))
+
+@if (auth()->user()->can('css'))
 <li class="nav-item">
-    <a href="{{ route('settings.index') }}"
-        class="nav-link {{ (\Route::currentRouteName()=='settings.index')?'active':'' }}">
-        <i class="nav-icon fas fa-address-card"></i>
+    <a href="{{ route('css.index') }}" class="nav-link {{ (\Route::currentRouteName()=='css.index')?'active':'' }}">
+        <i class="nav-icon fab fa-css3-alt"></i>
         <p>
-            Setting
-            <i class="fas fa-angle-left right"></i>
+            Css
+
+            {{-- <span class="badge badge-info right">6</span> --}}
+        </p>
+    </a>
+</li>
+@endif
+@if (auth()->user()->can('config'))
+<li class="nav-item">
+    <a href="{{ route('config.index') }}"
+        class="nav-link {{ (\Route::currentRouteName()=='config.index')?'active':'' }}">
+        <i class="nav-icon fas fa-skull"></i>
+        <p>
+            Config
+
             {{-- <span class="badge badge-info right">6</span> --}}
         </p>
     </a>

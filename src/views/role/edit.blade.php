@@ -95,28 +95,37 @@
                                                             <td><input type="checkbox" class="all"></td>
                                                             <td>{{ $module }}</td>
                                                             <td><input type="checkbox" class="from-control single view"
-                                                                    value="{{ $module }}_view" name="permissions[]"
-                                                                    {{ (in_array($module.'_view',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                                    value="{{ $module }}_view" name="permissions[]" {{
+                                                                    (in_array($module.'_view',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                }}>
                                                             </td>
-                                                            <td><input type="checkbox" class="from-control single create"
-                                                                    value="{{ $module }}_create" name="permissions[]"
-                                                                    {{ (in_array($module.'_create',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                            <td><input type="checkbox"
+                                                                    class="from-control single create"
+                                                                    value="{{ $module }}_create" name="permissions[]" {{
+                                                                    (in_array($module.'_create',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                }}>
                                                             </td>
                                                             <td><input type="checkbox" class="from-control single edit"
-                                                                    value="{{ $module }}_edit" name="permissions[]"
-                                                                    {{ (in_array($module.'_edit',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                                    value="{{ $module }}_edit" name="permissions[]" {{
+                                                                    (in_array($module.'_edit',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                }}>
                                                             </td>
-                                                            <td><input type="checkbox" class="from-control single update"
-                                                                    value="{{ $module }}_update" name="permissions[]"
-                                                                    {{ (in_array($module.'_update',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                            <td><input type="checkbox"
+                                                                    class="from-control single update"
+                                                                    value="{{ $module }}_update" name="permissions[]" {{
+                                                                    (in_array($module.'_update',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                }}>
                                                             </td>
-                                                            <td><input type="checkbox" class="from-control single delete"
-                                                                    value="{{ $module }}_delete" name="permissions[]"
-                                                                    {{ (in_array($module.'_delete',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                            <td><input type="checkbox"
+                                                                    class="from-control single delete"
+                                                                    value="{{ $module }}_delete" name="permissions[]" {{
+                                                                    (in_array($module.'_delete',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                }}>
                                                             </td>
                                                             <td><input type="checkbox" class="from-control single menu"
-                                                                    value="{{ $module }}_menu" name="permissions[]"
-                                                                    {{ (in_array($module.'_menu',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                                    value="{{ $module }}_menu" name="permissions[]" {{
+                                                                    (in_array($module.'_menu',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                }}>
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -145,8 +154,9 @@
                                                                                     value="company_profile"
                                                                                     data-bootstrap-switch
                                                                                     data-off-color="danger"
-                                                                                    data-on-color="success"
-                                                                                    {{ (in_array('company_profile',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                                                    data-on-color="success" {{
+                                                                                    (in_array('company_profile',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                                }}>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -159,8 +169,37 @@
                                                                                     value="site_setting"
                                                                                     data-bootstrap-switch
                                                                                     data-off-color="danger"
-                                                                                    data-on-color="success"
-                                                                                    {{ (in_array('site_setting',$role->permissions->pluck('name')->toArray()??[]))?'checked':'' }}>
+                                                                                    data-on-color="success" {{
+                                                                                    (in_array('site_setting',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                                }}>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="setting">CSS</label>
+                                                                            <div class="card-body">
+                                                                                <input type="checkbox" id="setting"
+                                                                                    name="permissions[]" value="css"
+                                                                                    data-bootstrap-switch
+                                                                                    data-off-color="danger"
+                                                                                    data-on-color="success" {{
+                                                                                    (in_array('css',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                                }}>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="config">Config</label>
+                                                                            <div class="card-body">
+                                                                                <input type="checkbox" id="config"
+                                                                                    name="permissions[]" value="config"
+                                                                                    data-bootstrap-switch
+                                                                                    data-off-color="danger"
+                                                                                    data-on-color="success" {{
+                                                                                    (in_array('config',$role->permissions->pluck('name')->toArray()??[]))?'checked':''
+                                                                                }}>
                                                                             </div>
                                                                         </div>
                                                                     </div>

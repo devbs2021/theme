@@ -56,7 +56,7 @@ class SiteController extends Controller
             $site->update($data);
 
             return redirect()->back()->with('success', 'Successfully Created');
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->back()->with('error', 'Something went wrong!!');
 

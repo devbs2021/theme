@@ -162,6 +162,34 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="setting">CSS</label>
+                                                                            <div class="card-body">
+                                                                                <input type="checkbox" id="setting"
+                                                                                    name="permissions[]"
+                                                                                    value="css"
+                                                                                    data-bootstrap-switch
+                                                                                    data-off-color="danger"
+                                                                                    data-on-color="success"
+                                                                                    {{ (in_array('css',old('permissions')??[]))?'checked':'' }}>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="config">Config</label>
+                                                                            <div class="card-body">
+                                                                                <input type="checkbox" id="config"
+                                                                                    name="permissions[]"
+                                                                                    value="config"
+                                                                                    data-bootstrap-switch
+                                                                                    data-off-color="danger"
+                                                                                    data-on-color="success"
+                                                                                    {{ (in_array('config',old('permissions')??[]))?'checked':'' }}>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                             </td>
                                                         </tr>
                                                     </tbody>

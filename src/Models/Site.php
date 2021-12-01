@@ -20,6 +20,8 @@ class Site extends Model
         'facebook',
         'twitter',
         'google',
+        'linkedin',
+        'instagram',
         'youtube',
         'working_hours',
         'email',

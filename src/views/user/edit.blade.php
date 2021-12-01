@@ -85,14 +85,25 @@
                                         style="font-size: x-small;">Deselect All</a>
                                     <select class="form-control select2" name="roles[]" multiple="multiple">
                                         @foreach(Theme::getRoles() as $role)
-                                        <option value="{{ $role->name }}"
-                                            {{ (in_array($role->name,$user->roles->pluck('name')->toArray()))?'selected':'' }}>{{ $role->name }}
+                                        <option value="{{ $role->name }}" {{ (in_array($role->
+                                            name,$user->roles->pluck('name')->toArray()))?'selected':'' }}>
+                                            {{ $role->name }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
+                        {{-- <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Featured</h3>
+                            </div>
+                            <div class="card-body">
+                                <input type="checkbox" name="featured" value="1" data-bootstrap-switch
+                                    data-off-color="danger" data-on-color="success" {{ (old('featured'))?'checked':''
+                                    }}>
+                            </div>
+                        </div> --}}
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a class="btn btn-danger float-right" onclick="$('.form')[0].reset()">Reset</a>

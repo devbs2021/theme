@@ -1,25 +1,17 @@
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 ## About Theme
 
-AdminLTE V3 theme is nicely modified for laravel application.It includes all the necessary assets of adminlte v3
-
+AdminLTE V3 theme is nicely modified for laravel application. It includes all the necessary assets of adminlte v3
 
 ## Following are the features
 
 Some of specific features are listed below
-
 
 - Easy to use
 - Easy to Customize
 - Can develop futher plugins
 
 ## Key Components
+
 - Authentication with Authorization
 - User Management
 - Site Setting
@@ -30,30 +22,25 @@ Some of specific features are listed below
 - Basic CMS for any type of conent such as privay policy,about us, etc.
 
 ## Usage
+
 ### Authentication
+
 It will provide HasPermission Traits, you must have to include in the User Model
+
 ```php
-use 
-// Add spatie permission
+use Spatie\Permission\Traits\HasRoles; 
 
 class User extends Model{
-    
+    use HasRole;
+
 }
 
 ```
-This will attach user with permissions
-To get User Permission 
-```php 
 
-auth()->user()->permission->permission;
-// it will provide array response
-[ "user_create","user_view","..."]
-
-
-```
 ## Theme package has following in-built permissions
+
 ```php
-        [          
+        [
             'user_create',
             'user_edit',
             'user_delete',
@@ -90,13 +77,29 @@ auth()->user()->permission->permission;
             'menu_menu',
             'menu_view',
             'menu_update',
+            'faq_create',
+            'faq_edit',
+            'faq_delete',
+            'faq_menu',
+            'faq_view',
+            'faq_update',
+            'message_create',
+            'message_edit',
+            'message_delete',
+            'message_menu',
+            'message_view',
+            'message_update',
             'site_setting',
             'company_profile',
+            'config',
+            'css'
                             ]
 ```
+
 ### It provide Theme Facade class which can perform follwoing
 
 #### Usage
+
 ```php
 use Theme;
 
@@ -107,10 +110,10 @@ Theme::siteSetup();
 //CMS by slug
 Theme::getCMSBySlug($slug);
 
-//Header Menu, it will include child menus 
+//Header Menu, it will include child menus
 Theme::getHeaderMenu();
 
-//Footer Menu,it will include child menus 
+//Footer Menu,it will include child menus
 Theme::getFooterMenu();
 
 //Testimonials
@@ -121,13 +124,43 @@ Theme::testimonials();
 Theme::createSubscription($request)
 
 ```
-## To User Register other plugin
-```cmd
 
-php artisan vendor:publish 
+## Publish Assets
 
-//choose ThemeServiceProvier
 
-```
 It will publish all the assets and theme.php config file
 where you can register new plugins
+
+## Setup
+In conosle run following commands sequentially
+```cli
+> composer install
+> npm install
+```
+This command will install and update  all the dependencies.
+
+```cli
+> php artisan vendor:publish --provider="DevbShrestha\Theme\ThemeServiceProvider"
+> php artisan vendor:publish --provider="Yajra\DataTables\ButtonsServiceProvider"
+> php artisan migrate
+> php artisan storage:link
+```
+## Seeder
+Generate Admin Credentials
+
+```cli
+> php artisan db:seed --class="DevbShrestha\Theme\Seeders\AdminSeeder" 
+```
+
+## Run APP
+The app will run on http://localhost:3000
+```cli
+> php artisan serve
+> npm run watch
+```
+
+## Admin Credentials
+```
+Email:- super@super.com
+Password:- P@ssword
+```

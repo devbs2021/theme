@@ -6,7 +6,7 @@
     @stack('css')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed text-sm">
     <div class="wrapper">
         @include('theme::layouts.nav')
         @include('theme::layouts.sidebar')

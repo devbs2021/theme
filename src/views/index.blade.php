@@ -31,7 +31,7 @@
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
                 <!-- Custom tabs (Charts with tabs)-->
-                <div class="card bg-gradient-primary">
+                {{-- <div class="card bg-gradient-primary">
                     <div class="card-header border-0">
                         <h3 class="card-title">
                             <i class="fas fa-map-marker-alt mr-1"></i>
@@ -73,7 +73,7 @@
                         </div>
                         <!-- /.row -->
                     </div>
-                </div>
+                </div> --}}
                 <!-- /.card -->
 
                 {{-- <!-- DIRECT CHAT -->
@@ -285,7 +285,7 @@
                 <!--/.direct-chat --> --}}
 
                 <!-- TO DO List -->
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="ion ion-clipboard mr-1"></i>
@@ -413,12 +413,12 @@
                         <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add
                             item</button>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /.card -->
             </section>
             <!-- /.Left col -->
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-5 connectedSortable">
+            {{-- <section class="col-lg-5 connectedSortable">
 
                 <!-- Map card -->
 
@@ -546,7 +546,7 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-            </section>
+            </section> --}}
             <!-- right col -->
         </div>
         <!-- /.row (main row) -->

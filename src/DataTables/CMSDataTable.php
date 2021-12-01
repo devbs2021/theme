@@ -20,10 +20,23 @@ class CMSDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('action', function (CMS $cms) {
-                return '<a class="" href=' . route('cms.edit', $cms->id) . '><i class="fa fa-edit"></i></a><form method="POST" style="display:inline; margin-left:10px" action="' . route('cms.destroy', $cms->id) . '"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="' . csrf_token() . '"><a class="delete-class" data-href=' . route('cms.destroy', $cms->id) . '><i class="fa fa-trash" style="color:red;"></i></a></form>';
+                return '<a class="" href=' . route('cms.edit', $cms->id) . '><i class="fa fa-edit"></i></a>';
+            })
+            ->editColumn('parent', function (CMS $cms) {
+                return $cms->parent->title ?? '';
+            })
+            ->editColumn('description', function (CMS $cms) {
+                return '<a href="' . route('about', $cms->slug) . '" target="_blank">Click Here</a>';
             })
             ->editColumn('image', function (CMS $cms) {
-                return '<img src=' . asset('storage/' . $cms->image) . ' height="100px">';
+                if ($cms->image) {
+
+                    return '<img src=' . asset('storage/' . $cms->image) . ' height="100px">';
+                } else {
+
+                    return '<img src=' . asset('theme/image-not-found.png') . ' height="100px">';
+
+                }
             })
 
             ->editColumn('status', function (CMS $cms) {
@@ -40,7 +53,7 @@ class CMSDataTable extends DataTable
      */
     public function query(CMS $model)
     {
-        return $model->newQuery();
+        return $model->with('parent')->newQuery();
     }
 
     /**
@@ -77,6 +90,12 @@ class CMSDataTable extends DataTable
                 ->searchable(false),
             Column::make('title'),
             Column::make('slug'),
+            Column::make('parent')
+                ->data('parent')
+                ->name('parent.title')
+                ->searchable(false),
+            Column::make('description')
+                ->title('Preview'),
             Column::make('image'),
             Column::make('status'),
             Column::computed('action')

@@ -38,6 +38,9 @@ class UsersDataTable extends DataTable
             ->editColumn('action', function (User $user) {
                 return '<a class="" href=' . route('users.edit', $user->id) . '><i class="fa fa-edit"></i></a><form style="display:inline; margin-left:10px" method="POST" action="' . route('users.destroy', $user->id) . '"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="' . csrf_token() . '"><a class="delete-class" data-href=' . route('users.destroy', $user->id) . '><i class="fa fa-trash" style="color:red;"></i></a></form>';
             })
+            ->editColumn('featured', function (User $user) {
+                return $user->featured ? '<span style="color:white;background-color:green; padding:5px; border-radius:10px;">Yes</span>' : '<span style="color:white;background-color:red; padding:5px; border-radius:10px;">No</span>';
+            })
             ->editColumn('permissions', function (User $user) {
                 $data = '
                 <div class="text-center"><a data-toggle="collapse" href="#collapseExample' . $user->id . '" role="button" aria-expanded="false" aria-controls="collapseExample' . $user->id . '" class="btn btn-success" style="font-size:smaller;">
@@ -56,6 +59,9 @@ class UsersDataTable extends DataTable
                 return $data;
 
             })
+            ->editColumn('created_at', function (User $user) {
+                return date('Y M d', strtotime($user->created_at));
+            })
             ->escapeColumns([]);
     }
 
@@ -67,7 +73,7 @@ class UsersDataTable extends DataTable
      */
     public function query()
     {
-        return User::with('roles')->newQuery();
+        return User::with('roles')->orderBy('created_at', 'DESC')->newQuery();
     }
 
     /**
@@ -104,6 +110,7 @@ class UsersDataTable extends DataTable
                 ->searchable(false),
             Column::make('name'),
             Column::make('email'),
+            // Column::make('phone'),
             Column::make('roles')
                 ->data('roles')
                 ->name('roles.name')
@@ -112,6 +119,9 @@ class UsersDataTable extends DataTable
             //     ->width(500)
             //     ->data('permissions')
             //     ->name('permissions.permissions'),
+            // Column::make('featured'),
+
+            Column::make('created_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

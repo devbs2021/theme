@@ -58,7 +58,7 @@ class TestimonialController extends Controller
 
             return redirect()->route('testimonials.index')->with('success', 'Successfully Created!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('testimonials.index')->with('error', 'Something went wrong!!');
 
@@ -106,11 +106,13 @@ class TestimonialController extends Controller
             if ($request->image) {
                 $data['image'] = $this->uploadFile('testimonial', $request->image);
             }
+            $data['status'] = $request->status ? 1 : 0;
+
             $testimonial->update($data);
 
             return redirect()->route('testimonials.index')->with('success', 'Successfully updated!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('testimonials.index')->with('error', 'Something went wrong!!');
 
@@ -133,7 +135,7 @@ class TestimonialController extends Controller
 
             return redirect()->route('testimonials.index')->with('success', 'Successfully Deleted!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('testimonials.index')->with('error', 'Something went wrong!!');
 

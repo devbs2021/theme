@@ -53,7 +53,7 @@ class SubscriptionController extends Controller
             Subscription::create($data);
 
             return redirect()->route('subscriptions.index')->with('success', 'Successfully Created!!');
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('subscriptions.index')->with('error', 'Something went wrong!!');
 
@@ -98,11 +98,12 @@ class SubscriptionController extends Controller
         try {
 
             $data = $request->validated();
+            $data['status'] = $request->status ? 1 : 0;
 
             $subscription->update($data);
 
             return redirect()->route('subscriptions.index')->with('success', 'Successfully Created!!');
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('subscriptions.index')->with('error', 'Something went wrong!!');
 
@@ -125,7 +126,7 @@ class SubscriptionController extends Controller
 
             return redirect()->route('subscriptions.index')->with('success', 'Successfully Created!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('subscriptions.index')->with('error', 'Something went wrong!!');
 

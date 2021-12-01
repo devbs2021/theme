@@ -73,6 +73,21 @@
                     <!-- /.col -->
                     <div class="col-md-5">
                         <div class="form-group">
+                            <label for="cms">Parent</label>
+                            <select name="cms_id" class="form-control select2">
+                                <option value="">Select Parent</option>
+                                @foreach(Theme::getParentCMS() as $parent)
+                                <option value="{{ $parent->id }}" {{ (old('cms_id')==$parent->id)?'selected':'' }}>
+                                    {{ $parent->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="icon">Icon</label>
+                            <input type="text" class="form-control" id="icon" name="icon" placeholder="Enter icon"
+                                value="{{ old('icon') }}">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputFile">Image</label>
                             <div class="input-group">
                                 <div class="custom-file">

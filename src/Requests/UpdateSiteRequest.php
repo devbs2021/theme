@@ -37,6 +37,8 @@ class UpdateSiteRequest extends FormRequest
             'twitter' => 'nullable|string',
             'google' => 'nullable|string',
             'youtube' => 'nullable|string',
+            'linkedin' => 'nullable|string',
+            'instagram' => 'nullable|string',
             'working_hours' => 'nullable|string',
 
         ];

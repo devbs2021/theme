@@ -23,7 +23,14 @@ class TestimonialDataTable extends DataTable
                 return '<a class="" href=' . route('testimonials.edit', $testimonial->id) . '><i class="fa fa-edit"></i></a><form style="display:inline; margin-left:10px" method="POST" action="' . route('testimonials.destroy', $testimonial->id) . '"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="' . csrf_token() . '"><a class="delete-class" data-href=' . route('testimonials.destroy', $testimonial->id) . '><i class="fa fa-trash" style="color:red;"></i></a></form>';
             })
             ->editColumn('image', function (Testimonial $testimonial) {
-                return '<img src=' . asset('storage/' . $testimonial->image) . ' height="100px">';
+                if ($testimonial->image) {
+
+                    return '<img src=' . asset('storage/' . $testimonial->image) . ' height="100px">';
+                } else {
+
+                    return '<img src=' . asset('theme/image-not-found.png') . ' height="100px">';
+
+                }
             })
             ->editColumn('status', function (Testimonial $testimonial) {
                 return $testimonial->status ? '<span style="color:white;background-color:green; padding:5px; border-radius:10px;">Published</span>' : '<span style="color:white;background-color:red; padding:5px; border-radius:10px;">Unpublished</span>';

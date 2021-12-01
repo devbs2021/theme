@@ -25,6 +25,7 @@ class CreateSitesTable extends Migration
             $table->text('map')->nullable()->default(null);
             $table->string('facebook')->nullable()->default(null);
             $table->string('twitter')->nullable()->default(null);
+            $table->string('linkedin')->nullable()->default(null);
             $table->string('google')->nullable()->default(null);
             $table->string('youtube')->nullable()->default(null);
             $table->text('working_hours')->nullable()->default(null);

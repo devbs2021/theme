@@ -4,6 +4,7 @@ namespace DevbShrestha\Theme\Facades;
 
 use DevbShrestha\Theme\Jobs\SendMailJob;
 use DevbShrestha\Theme\Models\CMS;
+use DevbShrestha\Theme\Models\Faq;
 use DevbShrestha\Theme\Models\Menu;
 use DevbShrestha\Theme\Models\Setting;
 use DevbShrestha\Theme\Models\Site;
@@ -55,7 +56,7 @@ class Theme
         $packages = $this->packages();
         $menu = '';
         foreach ($packages as $key => $package) {
-            $files = collect(File::allFiles(base_path('vendor/devbshrestha/' . strtolower($package) . '/src/Facades/')))
+            $files = collect(File::allFiles(base_path('vendor/inepal/' . strtolower($package) . '/src/Facades/')))
                 ->sortBy(function ($file) {
                     return $file->getBaseName();
                 });
@@ -78,7 +79,7 @@ class Theme
         $packages = $this->packages();
         $component = '';
         foreach ($packages as $key => $package) {
-            $files = collect(File::allFiles(base_path('vendor/devbshrestha/' . strtolower($package) . '/src/Facades/')))
+            $files = collect(File::allFiles(base_path('vendor/inepal/' . strtolower($package) . '/src/Facades/')))
                 ->sortBy(function ($file) {
                     return $file->getBaseName();
                 });
@@ -145,8 +146,22 @@ class Theme
             'menu_menu',
             'menu_view',
             'menu_update',
+            'faq_create',
+            'faq_edit',
+            'faq_delete',
+            'faq_menu',
+            'faq_view',
+            'faq_update',
+            'message_create',
+            'message_edit',
+            'message_delete',
+            'message_menu',
+            'message_view',
+            'message_update',
             'site_setting',
             'company_profile',
+            'css',
+            'config',
         ];
     }
     public function getPermission()
@@ -154,7 +169,7 @@ class Theme
         $packages = $this->packages();
         $permissions = [];
         foreach ($packages as $key => $package) {
-            $files = collect(File::allFiles(base_path('vendor/devbshrestha/' . strtolower($package) . '/src/Facades/')))
+            $files = collect(File::allFiles(base_path('vendor/inepal/' . strtolower($package) . '/src/Facades/')))
                 ->sortBy(function ($file) {
                     return $file->getBaseName();
                 });
@@ -234,14 +249,22 @@ class Theme
         return $site;
     }
 
-    public function testimonials()
+    public function testimonials($limit = 0)
     {
-        return Testimonial::where('status', 1)->orderBy('position', 'ASC')->get();
+
+        if ($limit > 0) {
+
+            return Testimonial::where('status', 1)->orderBy('position', 'ASC')->limit($limit)->get();
+
+        } else {
+
+            return Testimonial::where('status', 1)->orderBy('position', 'ASC')->get();
+        }
     }
 
     public function getCMSBySlug($slug)
     {
-        return CMS::where('slug', $slug)->where('status', 1)->first();
+        return CMS::where('slug', $slug)->where('status', 1)->with('childs')->first();
     }
 
     public function getHeaderMenu()
@@ -252,7 +275,7 @@ class Theme
     }
     public function getFooterMenu()
     {
-        return Menu::where('type', 'FOOTER')->with('page')->where('status', 1)->with('menus', function ($query) {
+        return Menu::where('type', 'FOOTER')->with('page')->where('status', 1)->where('menu_id', null)->with('menus', function ($query) {
             return $query->where('status', 1)->orderBy('position', 'ASC');
 
         })->orderBy('position', 'ASC')->get();
@@ -290,6 +313,32 @@ class Theme
     public function getPage()
     {
         return CMS::all();
+    }
+
+    public function getFaq($limit = 0)
+    {
+        if ($limit > 0) {
+
+            return Faq::where('status', 1)->orderBy('position', 'ASC')->limit($limit)->get();
+        } else {
+
+            return Faq::where('status', 1)->orderBy('position', 'ASC')->get();
+
+        }
+    }
+
+    public function renderCss()
+    {
+        return view('theme::css.render');
+    }
+
+    public function getParentCMS()
+    {
+        return CMS::where('cms_id', null)->get();
+    }
+    public function getParentMenu()
+    {
+        return Menu::where('status', 1)->orderBy('position', 'ASC')->where('menu_id', null)->with('menus')->get();
     }
 
 }

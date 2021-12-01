@@ -91,7 +91,7 @@
                                 <textarea class="form-control" name="map">{{ Theme::siteSetup()->map }}</textarea>
                             </div>
                             <div class="card-body" style="width: 100%;">
-                               {!! Theme::siteSetup()->map !!}
+                                {!! Theme::siteSetup()->map !!}
                             </div>
                         </div>
 
@@ -134,22 +134,32 @@
                             </div>
                             <div class="card-body">
                                 <label for="facebook">Facebook</label>
-                                <input type="text" class="form-control" id="met_title" name="facebook"
+                                <input type="text" class="form-control" id="facebook" name="facebook"
                                     placeholder="Enter Facebook Link" value="{{ Theme::siteSetup()->facebook }}">
                             </div>
                             <div class="card-body">
                                 <label for="twitter">Twitter</label>
-                                <input type="text" class="form-control" id="met_title" name="twitter"
+                                <input type="text" class="form-control" id="twitter" name="twitter"
                                     placeholder="Enter Twitter Link" value="{{ Theme::siteSetup()->twitter }}">
                             </div>
                             <div class="card-body">
                                 <label for="google">Google</label>
-                                <input type="text" class="form-control" id="met_title" name="google"
+                                <input type="text" class="form-control" id="google" name="google"
                                     placeholder="Enter Google Link" value="{{ Theme::siteSetup()->google }}">
                             </div>
                             <div class="card-body">
+                                <label for="linkedin">Linkedin</label>
+                                <input type="text" class="form-control" id="linkendin" name="linkedin"
+                                    placeholder="Enter linkedin Link" value="{{ Theme::siteSetup()->linkedin }}">
+                            </div>
+                            <div class="card-body">
+                                <label for="instagram">Instagram</label>
+                                <input type="text" class="form-control" id="instagram" name="instagram"
+                                    placeholder="Enter Instagram Link" value="{{ Theme::siteSetup()->instagram }}">
+                            </div>
+                            <div class="card-body">
                                 <label for="youtube">Youtube</label>
-                                <input type="text" class="form-control" id="met_title" name="youtube"
+                                <input type="text" class="form-control" id="youtube" name="youtube"
                                     placeholder="Enter YouTUbe Link" value="{{ Theme::siteSetup()->youtube }}">
                             </div>
                             <!-- /.card-body -->
@@ -175,7 +185,6 @@
 <script src="{{ asset('theme') }}/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script src="{{ asset('theme') }}/plugins/select2/js/select2.full.min.js"></script>
 <script>
-   
     $(function(){
         $('.select2').select2({
         theme: 'bootstrap4'

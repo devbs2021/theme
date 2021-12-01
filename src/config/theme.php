@@ -1,10 +1,8 @@
 <?php
-
 return [
     'packages' => [
         'Theme',
     ],
-
     'modules' => [
         'user',
         'role',
@@ -12,5 +10,7 @@ return [
         'subscription',
         'page',
         'menu',
+        'faq',
+        'message',
     ],
 ];

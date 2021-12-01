@@ -28,6 +28,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|unique:users,email,' . $this->user->id,
             'password' => 'nullable|min:6|max:20|string',
+            'featured' => 'nullable|in:1',
         ];
     }
 }

@@ -119,7 +119,7 @@
     'map_proj_forward', 'map_proj_image', 'map_proj_info',
     'map_proj_init', 'map_proj_inverse',
     'map_set', 'matrix_multiply', 'matrix_power', 'max', 'md_test',
-    'mean', 'meanabsdev', 'mean_filter', 'median', 'memory',
+    'mean', 'meanainepal', 'mean_filter', 'median', 'memory',
     'mesh_clip', 'mesh_decimate', 'mesh_issolid',
     'mesh_merge', 'mesh_numtriangles',
     'mesh_obj', 'mesh_smooth', 'mesh_surfacearea',

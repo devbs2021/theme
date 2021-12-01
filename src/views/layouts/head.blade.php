@@ -26,3 +26,9 @@
 <link rel="stylesheet" href="{{ asset('theme') }}/plugins/toastr/toastr.min.css">
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<style>
+.dataTables_wrapper {
+    overflow-x: auto !important;
+}
+    </style>

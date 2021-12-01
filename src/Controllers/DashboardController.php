@@ -14,7 +14,9 @@ class DashboardController extends Controller
      */
     public function index(): View
     {
-
+        if (count(auth()->user()->getRoleNames()) == 1 && auth()->user()->hasRole('user')) {
+            abort(403);
+        }
         return view('theme::index');
 
     }

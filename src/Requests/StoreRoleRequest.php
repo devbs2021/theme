@@ -25,7 +25,7 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:30',
+            'name' => 'required|string|max:30|unique:roles,name',
             'permissions.*' => 'nullable|in:' . implode(',', Theme::getPermission()),
         ];
     }

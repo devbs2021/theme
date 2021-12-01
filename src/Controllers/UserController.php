@@ -3,16 +3,20 @@
 namespace DevbShrestha\Theme\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use DevbShrestha\Theme\DataTables\UsersDataTable;
 use DevbShrestha\Theme\Requests\StoreUserRequest;
 use DevbShrestha\Theme\Requests\UpdateUserRequest;
+use DevbShrestha\Theme\Traits\FileUpload;
 use Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    use FileUpload;
     /**
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -57,7 +61,7 @@ class UserController extends Controller
 
             return redirect()->route('users.index')->with('success', 'Successfully Created!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('users.index')->with('error', 'Something went wrong!!');
 
@@ -105,10 +109,11 @@ class UserController extends Controller
             if ($request->password) {
                 $data['password'] = Hash::make($request->password);
             }
+            // $data['featured'] = ($request->featured) ? 1 : 0;
             $user->update($data);
             $user->syncRoles($request->roles);
             return redirect()->route('users.index')->with('success', 'Successfully Updated!!');
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('users.index')->with('error', 'Something went wrong!!');
 
@@ -127,16 +132,49 @@ class UserController extends Controller
         abort_if(!auth()->user()->can('user_delete'), 403);
 
         try {
+            if (count($user->orders) > 0) {
 
-            $user->permissions()->delete();
-            // $user->delete();
+                return redirect()->route('users.index')->with('error', 'Users has order, delete order before deleting order');
+
+            }
+            $user->cart->non_order_items()->delete();
+            $user->shippings()->delete();
+            $user->products()->update([
+                'user_id' => null,
+            ]);
+            $user->categories()->update([
+                'user_id' => null,
+            ]);
+            $user->brands()->update([
+                'user_id' => null,
+            ]);
+
+            $user->wish_lists()->delete();
+            $user->syncRoles([]);
+            $user->delete();
 
             return redirect()->route('users.index')->with('success', 'Successfully Updated!!');
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
-            return redirect()->route('users.index')->with('error', 'Something went wrong!!');
+            return redirect()->route('users.index')->with('error', 'Something went wrong!!' . $ex->getMessage());
 
         }
 
+    }
+
+    public function editProfile()
+    {
+
+        return view('theme::user.profile');
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $data = $request->validated();
+        if ($request->profile) {
+            $data['profile'] = $this->uploadFile('user', $request->profile);
+        }
+        auth()->user()->update($data);
+        return redirect()->back()->with('success', 'Successfully Updated..');
     }
 }

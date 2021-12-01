@@ -29,6 +29,8 @@ class CMS extends Model
         'image',
         'seo',
         'status',
+        'cms_id',
+        'icon',
 
     ];
 
@@ -36,5 +38,14 @@ class CMS extends Model
         [
         'seo' => 'array',
     ];
+
+    public function childs()
+    {
+        return $this->hasMany(CMS::class, 'cms_id');
+    }
+    public function parent()
+    {
+        return $this->belongsTo(CMS::class, 'cms_id', 'id');
+    }
 
 }

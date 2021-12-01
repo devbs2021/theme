@@ -71,7 +71,7 @@ class CMSController extends Controller
 
             return redirect()->route('cms.index')->with('success', 'Successfully Created!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('cms.index')->with('error', 'Something went wrong!!');
 
@@ -130,6 +130,7 @@ class CMSController extends Controller
             }
 
             $data['seo'] = $seo;
+            $data['status'] = $request->status ? 1 : 0;
 
             $cms->update($data);
             if ($request->slug) {
@@ -139,7 +140,7 @@ class CMSController extends Controller
 
             return redirect()->route('cms.index')->with('success', 'Successfully Updated!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('cms.index')->with('error', 'Something went wrong!!');
 
@@ -162,7 +163,7 @@ class CMSController extends Controller
 
             return redirect()->route('cms.index')->with('success', 'Successfully Deleted!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('cms.index')->with('error', 'Something went wrong!!');
 

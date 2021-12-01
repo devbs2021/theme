@@ -53,7 +53,7 @@ class MenuController extends Controller
 
             return redirect()->route('menus.index')->with('success', 'Successfully Created!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('menus.index')->with('error', 'Something went wrong!!');
 
@@ -96,13 +96,16 @@ class MenuController extends Controller
         abort_if(!auth()->user()->can('menu_update'), 403);
 
         try {
+
             $data = $request->validated();
+
+            $data['status'] = $request->status ? 1 : 0;
 
             $menu->update($data);
 
             return redirect()->route('menus.index')->with('success', 'Successfully Updated!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('menus.index')->with('error', 'Something went wrong!!');
 
@@ -125,7 +128,7 @@ class MenuController extends Controller
 
             return redirect()->route('menus.index')->with('success', 'Successfully Deleted!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('menus.index')->with('error', 'Something went wrong!!');
 

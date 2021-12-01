@@ -35,7 +35,7 @@ class RoleController extends Controller
             $role->syncPermissions($request->permissions);
 
             return redirect()->route('roles.index')->with('success', 'Successfully Created!!');
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('roles.index')->with('error', 'Somethning went wrong!!');
         }
@@ -59,9 +59,9 @@ class RoleController extends Controller
             $role->update($data);
             $role->syncPermissions($request->permissions);
 
-            return redirect()->route('roles.index')->with('success', 'Successfully Created!!');
+            return redirect()->route('roles.index')->with('success', 'Successfully Updated!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('roles.index')->with('error', 'Something Went Wrong!!');
 
@@ -80,7 +80,7 @@ class RoleController extends Controller
 
             return redirect()->route('roles.index')->with('success', 'Successfully Deleted!!');
 
-        } catch (\Exception $ex) {
+        } catch (\Exception$ex) {
 
             return redirect()->route('roles.index')->with('error', 'Something went wrong!!');
 
