@@ -56,7 +56,7 @@ class Theme
         $packages = $this->packages();
         $menu = '';
         foreach ($packages as $key => $package) {
-            $files = collect(File::allFiles(base_path('vendor/inepal/' . strtolower($package) . '/src/Facades/')))
+            $files = collect(File::allFiles(base_path('vendor/devbshrestha/' . strtolower($package) . '/src/Facades/')))
                 ->sortBy(function ($file) {
                     return $file->getBaseName();
                 });
@@ -79,7 +79,7 @@ class Theme
         $packages = $this->packages();
         $component = '';
         foreach ($packages as $key => $package) {
-            $files = collect(File::allFiles(base_path('vendor/inepal/' . strtolower($package) . '/src/Facades/')))
+            $files = collect(File::allFiles(base_path('vendor/devbshrestha/' . strtolower($package) . '/src/Facades/')))
                 ->sortBy(function ($file) {
                     return $file->getBaseName();
                 });
@@ -169,7 +169,7 @@ class Theme
         $packages = $this->packages();
         $permissions = [];
         foreach ($packages as $key => $package) {
-            $files = collect(File::allFiles(base_path('vendor/inepal/' . strtolower($package) . '/src/Facades/')))
+            $files = collect(File::allFiles(base_path('vendor/devbshrestha/' . strtolower($package) . '/src/Facades/')))
                 ->sortBy(function ($file) {
                     return $file->getBaseName();
                 });
