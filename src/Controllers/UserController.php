@@ -132,28 +132,12 @@ class UserController extends Controller
         abort_if(!auth()->user()->can('user_delete'), 403);
 
         try {
-            if (count($user->orders) > 0) {
 
-                return redirect()->route('users.index')->with('error', 'Users has order, delete order before deleting order');
-
-            }
-            $user->cart->non_order_items()->delete();
-            $user->shippings()->delete();
-            $user->products()->update([
-                'user_id' => null,
-            ]);
-            $user->categories()->update([
-                'user_id' => null,
-            ]);
-            $user->brands()->update([
-                'user_id' => null,
-            ]);
-
-            $user->wish_lists()->delete();
             $user->syncRoles([]);
             $user->delete();
 
             return redirect()->route('users.index')->with('success', 'Successfully Updated!!');
+
         } catch (\Exception$ex) {
 
             return redirect()->route('users.index')->with('error', 'Something went wrong!!' . $ex->getMessage());
